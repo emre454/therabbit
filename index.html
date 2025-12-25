@@ -55,7 +55,25 @@
             pointer-events: none;
         }
 
-        /* Başlangıç Ekranı */
+    /* 
+Buraya kadar indiysen, hazır cevap aramıyorsun demektir. Kod açık. Akış ortada. Anahtar verilmez, üretilir. Ne girersen, onu alırsın.
+
+
+import hashlib
+
+SECRET_HASH = "d3d1aa4036f96572ac685daf80497b3ab2174438e09b64fe27196e1962df9f39"
+
+def solve(word: str):
+    if hashlib.sha256(word.encode()).hexdigest() != SECRET_HASH:
+        raise Exception("Yanlış kelime")
+
+    claim_code = hashlib.sha256(
+        (word + "salt").encode()
+    ).hexdigest()
+
+    print("CLAIM:", claim_code)
+
+*/
         #init-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -90,7 +108,7 @@
             box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
         }
 
-        /* Konsol */
+        
         #console {
             width: 100%;
             max-width: 800px;
@@ -414,11 +432,11 @@
             const gain = audioCtx.createGain();
 
             if (type === 'error') {
-                // Hata: Biraz daha kalın ve bozuk
+                
                 filter.frequency.value = 500;
                 gain.gain.setValueAtTime(0.3, t);
             } else if (type === 'highlight' || type === 'green') {
-                // Vurgu: Biraz daha tiz ve keskin
+                
                 filter.frequency.value = 1500 + randomFreq;
                 gain.gain.setValueAtTime(0.15, t);
             } else {
